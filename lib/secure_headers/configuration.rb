@@ -15,9 +15,9 @@ module SecureHeaders
       #
       # Returns the newly created config.
       def default(&block)
-        if defined?(@default_config)
-          raise AlreadyConfiguredError, "Policy already configured"
-        end
+        # if defined?(@default_config)
+        #   raise AlreadyConfiguredError, "Policy already configured"
+        # end
 
         # Define a built-in override that clears all configuration options and
         # results in no security headers being set.
