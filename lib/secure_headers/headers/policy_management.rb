@@ -38,7 +38,9 @@ module SecureHeaders
     SANDBOX = :sandbox
     SCRIPT_SRC = :script_src
     STYLE_SRC = :style_src
+    STYLE_SRC_ATTR = :style_src_attr
     REPORT_URI = :report_uri
+    REPORT_TO = :report_to
 
     DIRECTIVES_1_0 = [
       DEFAULT_SRC,
@@ -51,7 +53,8 @@ module SecureHeaders
       SANDBOX,
       SCRIPT_SRC,
       STYLE_SRC,
-      REPORT_URI
+      REPORT_URI,
+      REPORT_TO
     ].freeze
 
     BASE_URI = :base_uri
@@ -87,14 +90,15 @@ module SecureHeaders
       PREFETCH_SRC,
       REQUIRE_SRI_FOR,
       WORKER_SRC,
-      UPGRADE_INSECURE_REQUESTS
+      UPGRADE_INSECURE_REQUESTS,
+      STYLE_SRC_ATTR
     ].flatten.freeze
 
     ALL_DIRECTIVES = (DIRECTIVES_1_0 + DIRECTIVES_2_0 + DIRECTIVES_3_0).uniq.sort
 
     # Think of default-src and report-uri as the beginning and end respectively,
     # everything else is in between.
-    BODY_DIRECTIVES = ALL_DIRECTIVES - [DEFAULT_SRC, REPORT_URI]
+    BODY_DIRECTIVES = ALL_DIRECTIVES - [DEFAULT_SRC, REPORT_URI, REPORT_TO]
 
     DIRECTIVE_VALUE_TYPES = {
       BASE_URI                  => :source_list,
@@ -114,10 +118,12 @@ module SecureHeaders
       PLUGIN_TYPES              => :media_type_list,
       REQUIRE_SRI_FOR           => :require_sri_for_list,
       REPORT_URI                => :source_list,
+      REPORT_TO                 => :source_list,
       PREFETCH_SRC              => :source_list,
       SANDBOX                   => :sandbox_list,
       SCRIPT_SRC                => :source_list,
       STYLE_SRC                 => :source_list,
+      STYLE_SRC_ATTR            => :source_list,
       WORKER_SRC                => :source_list,
       UPGRADE_INSECURE_REQUESTS => :boolean,
     }.freeze
@@ -136,6 +142,7 @@ module SecureHeaders
       FRAME_ANCESTORS,
       NAVIGATE_TO,
       REPORT_URI,
+      REPORT_TO
     ]
 
     FETCH_SOURCES = ALL_DIRECTIVES - NON_FETCH_SOURCES - NON_SOURCE_LIST_SOURCES

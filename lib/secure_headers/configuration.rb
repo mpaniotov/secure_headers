@@ -127,6 +127,7 @@ module SecureHeaders
       csp: ContentSecurityPolicy,
       csp_report_only: ContentSecurityPolicy,
       cookies: Cookie,
+      report_to: ReportTo
     }.freeze
 
     CONFIG_ATTRIBUTES = CONFIG_ATTRIBUTES_TO_HEADER_CLASSES.keys.freeze
@@ -167,6 +168,7 @@ module SecureHeaders
       self.referrer_policy = OPT_OUT
       self.csp = ContentSecurityPolicyConfig.new(ContentSecurityPolicyConfig::DEFAULT)
       self.csp_report_only = OPT_OUT
+      @report_to = nil
 
       instance_eval(&block) if block_given?
     end
@@ -188,6 +190,7 @@ module SecureHeaders
       copy.clear_site_data = @clear_site_data
       copy.expect_certificate_transparency = @expect_certificate_transparency
       copy.referrer_policy = @referrer_policy
+      copy.report_to = @report_to
       copy
     end
 

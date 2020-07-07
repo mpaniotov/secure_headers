@@ -126,7 +126,7 @@ module SecureHeaders
         source_list = populate_nonces(directive, source_list)
         source_list = reject_all_values_if_none(source_list)
 
-        unless directive == REPORT_URI || @preserve_schemes
+        unless directive == REPORT_URI || directive == REPORT_TO || @preserve_schemes
           source_list = strip_source_schemes(source_list)
         end
         dedup_source_list(source_list)
@@ -198,6 +198,7 @@ module SecureHeaders
         DEFAULT_SRC,
         BODY_DIRECTIVES,
         REPORT_URI,
+        REPORT_TO
       ].flatten
     end
 

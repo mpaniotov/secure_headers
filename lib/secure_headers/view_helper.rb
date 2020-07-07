@@ -103,6 +103,7 @@ module SecureHeaders
       hashed_tag(
         :style,
         :style_src,
+        :style_src_attr,
         Configuration.instance_variable_get(:@style_hashes),
         raise_error_on_unrecognized_hash,
         block

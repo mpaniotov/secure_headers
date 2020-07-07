@@ -34,12 +34,14 @@ module SecureHeaders
       @preserve_schemes = nil
       @report_only = nil
       @report_uri = nil
+      @report_to = nil
       @require_sri_for = nil
       @sandbox = nil
       @script_nonce = nil
       @script_src = nil
       @style_nonce = nil
       @style_src = nil
+      @style_src_attr = nil
       @worker_src = nil
       @upgrade_insecure_requests = nil
       @disable_nonce_backwards_compatibility = nil
